@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/springboot-twitter-linux:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/springboot-auction-linux:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -58,11 +58,11 @@ jobs:
         run: |
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
-            --comment "Deploy springboot-twitter via SSM" \
+            --comment "Deploy springboot-auction via SSM" \
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
             --parameters 'commands=[
-              "docker stop springboot-twitter || true",
-              "docker rm springboot-twitter || true",
+              "docker stop springboot-auction || true",
+              "docker rm springboot-auction || true",
               "docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/springboot-auction-linux:latest",
               "docker run -d \\
                 --name springboot-auction \\
