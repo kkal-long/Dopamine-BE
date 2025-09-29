@@ -17,6 +17,7 @@ services:
 
   certbot:
     image: certbot/certbot
+    platform: linux/amd64
     container_name: certbot
     volumes:
       - ./certbot/conf:/etc/letsencrypt
@@ -26,6 +27,7 @@ services:
   springboot-auction:
     container_name: springboot-auction
     image: gtaeu/springboot-auction:latest
+    platform: linux/amd64
     ports:
       - "8080:8080"
     environment:
