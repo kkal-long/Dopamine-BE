@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   nginx-auction:
     container_name: nginx-auction
@@ -31,32 +33,13 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-auction:3306/auctiondb
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-auction.cjgqoaggg3c5.ap-northeast-2.rds.amazonaws.com:3306/auctiondb
       - SPRING_DATASOURCE_USERNAME=dev
       - SPRING_DATASOURCE_PASSWORD=dev123
     networks:
       - auction-network
-    depends_on:
-      - mysql-auction
 
-  mysql-auction:
-    container_name: mysql-auction
-    image: mysql:9.3
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: auctiondb
-      MYSQL_USER: dev
-      MYSQL_PASSWORD: dev123
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - auction-network
 
 networks:
   auction-network:
     driver: bridge
-
-volumes:
-  mysql-data:
