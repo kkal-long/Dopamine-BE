@@ -74,6 +74,10 @@ logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
 
+app:
+  frontend:
+    url: http://localhost:3000   # 개발용
+    # 운영 배포 시에는 https://your-frontend.com 으로 교체
 ---
 # ===============================
 # prod 환경 → MySQL 사용
@@ -104,3 +108,8 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
+
+app:
+  frontend:
+    url: ${FRONT_DOMAIN}   # 개발용
+    # 운영 배포 시에는 https://your-frontend.com 으로 교체
